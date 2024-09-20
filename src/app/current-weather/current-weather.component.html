@@ -1,0 +1,35 @@
+@if(long != null && lat != null) {
+<div>{{ currentWeather.city }}, {{ currentWeather.country }}</div>
+<div>Condition: {{ currentWeather.condition }}</div>
+<div>
+  Temperature: {{ currentWeather.temperature }}°C, feels like:
+  {{ currentWeather.feelsLike }}°C
+</div>
+<div>Icon: {{ currentWeather.icon }}</div>
+<div>Humidity: {{ currentWeather.humidity }}%</div>
+<div>Wind speed: {{ currentWeather.wind }} km/h</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="content">
+      <img
+        src="http://openweathermap.org/img/w/{{ currentWeather.icon }}.png"
+        [alt]="currentWeather.condition"
+      />
+      <h2>Current temperatures</h2>
+      <div class="main">
+        {{ currentWeather.temperature | number : "1.0-0" }}°C
+      </div>
+      <div class="feels-like-temp">
+        Feels like {{ currentWeather.feelsLike | number : "1.0-0" }}°C
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <div class="main">{{ currentWeather.humidity }}%</div>
+      <h2>Humidity</h2>
+    </div>
+  </div>
+</div>
+}

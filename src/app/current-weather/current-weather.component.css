@@ -1,0 +1,45 @@
+.card {
+  background: rgba(240, 240, 240, 0.7);
+  width: 200px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.card .content {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  position: absolute;
+  bottom: 1rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.grid {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0 1rem;
+}
+
+.main {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.feels-like-temp {
+  opacity: 0.85;
+  padding-bottom: 3rem;
+}
+
+.card img {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
