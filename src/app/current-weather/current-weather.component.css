@@ -1,22 +1,19 @@
 .card {
   background: rgba(240, 240, 240, 0.7);
   width: 200px;
+  aspect-ratio: 3 / 2;
   border-radius: 15px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   position: relative;
-}
-
-.card .content {
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.card h2 {
+.card h3 {
   font-size: 0.9rem;
   font-weight: normal;
-  position: absolute;
-  bottom: 1rem;
+  margin-top: auto;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.3);
 }
@@ -35,11 +32,43 @@
 
 .feels-like-temp {
   opacity: 0.85;
-  padding-bottom: 3rem;
 }
 
-.card img {
+.card .icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.card .icon:has(:not(img)) {
+  top: 1rem;
+  right: 1rem;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.temps {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.min {
+  background-color: hsl(200, 70%, 40%);
+}
+
+.max {
+  background-color: hsl(10, 70%, 40%);
+}
+
+.min,
+.max {
+  display: bold;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
 }

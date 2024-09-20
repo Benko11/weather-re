@@ -3,11 +3,23 @@ import { WeatherService } from '../weather.service';
 import { Weather } from '../../interfaces/Weather';
 import { Observable, of, Subject, Subscription, takeUntil } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
+import { ArrowComponent } from '../icons/arrow/arrow.component';
+import { WindDegreesPipe } from '../wind-degrees.pipe';
+import { HumidityHighComponent } from '../icons/humidity-high.component';
+import { HumidityMidComponent } from '../icons/humidity-mid.component';
+import { HumidityLowComponent } from '../icons/humidity-low.component';
 
 @Component({
   selector: 'current-weather',
   standalone: true,
-  imports: [DecimalPipe],
+  imports: [
+    DecimalPipe,
+    WindDegreesPipe,
+    ArrowComponent,
+    HumidityHighComponent,
+    HumidityMidComponent,
+    HumidityLowComponent,
+  ],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css',
 })
@@ -21,9 +33,12 @@ export class CurrentWeatherComponent {
     condition: '',
     icon: '',
     temperature: 0,
+    tempMin: 0,
+    tempMax: 0,
     feelsLike: 0,
     humidity: 0,
-    wind: 0,
+    visibility: 0,
+    wind: { direction: 0, speed: 0 },
   };
 
   constructor(private weatherService: WeatherService) {}

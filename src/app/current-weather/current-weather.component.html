@@ -1,35 +1,64 @@
 @if(long != null && lat != null) {
-<div>{{ currentWeather.city }}, {{ currentWeather.country }}</div>
-<div>Condition: {{ currentWeather.condition }}</div>
-<div>
-  Temperature: {{ currentWeather.temperature }}°C, feels like:
-  {{ currentWeather.feelsLike }}°C
+
+<div class="hero">
+  <h1>{{ currentWeather.city }}, {{ currentWeather.country }}</h1>
+  <h2>{{ currentWeather.condition }}</h2>
+  <div class="temps">
+    <div class="max">
+      H: <strong>{{ currentWeather.tempMax | number : "1.0-0" }}°C</strong>
+    </div>
+    <div class="min">
+      L: <strong>{{ currentWeather.tempMin | number : "1.0-0" }}°C</strong>
+    </div>
+  </div>
 </div>
-<div>Icon: {{ currentWeather.icon }}</div>
-<div>Humidity: {{ currentWeather.humidity }}%</div>
-<div>Wind speed: {{ currentWeather.wind }} km/h</div>
 
 <div class="grid">
   <div class="card">
-    <div class="content">
+    <div class="icon">
       <img
         src="http://openweathermap.org/img/w/{{ currentWeather.icon }}.png"
         [alt]="currentWeather.condition"
       />
-      <h2>Current temperatures</h2>
-      <div class="main">
-        {{ currentWeather.temperature | number : "1.0-0" }}°C
-      </div>
-      <div class="feels-like-temp">
-        Feels like {{ currentWeather.feelsLike | number : "1.0-0" }}°C
-      </div>
     </div>
+    <div class="main">
+      {{ currentWeather.temperature | number : "1.0-0" }}°C
+    </div>
+    <div class="feels-like-temp">
+      Feels like {{ currentWeather.feelsLike | number : "1.0-0" }}°C
+    </div>
+    <h3>Current temperatures</h3>
   </div>
   <div class="card">
-    <div class="content">
-      <div class="main">{{ currentWeather.humidity }}%</div>
-      <h2>Humidity</h2>
+    <div class="icon">
+      @if (currentWeather.humidity <= 30) {
+      <humidity-low-icon [size]="24" colour="#8a8a8a" />
+      } @else if (currentWeather.humidity <= 70) {
+      <humidity-mid-icon [size]="24" colour="#8a8a8a" />
+      } @else {
+      <humidity-high-icon [size]="24" colour="#8a8a8a" />
+      }
     </div>
+    <div class="main">{{ currentWeather.humidity }}%</div>
+    <h3>Humidity</h3>
+  </div>
+  <div class="card">
+    <div
+      class="icon"
+      [style.transform]="'rotate(' + currentWeather.wind.direction + 'deg)'"
+    >
+      <arrow-icon [size]="24" colour="#8a8a8a" />
+    </div>
+    <div class="main">{{ currentWeather.wind.speed | number : "1.0-0" }}</div>
+    km/h
+    <h3>{{ currentWeather.wind.direction | windDegrees }} Wind</h3>
+  </div>
+  <div class="card">
+    <div class="main">
+      {{ currentWeather.visibility / 1000 | number : "1.0-0" }}
+    </div>
+    km
+    <h3>Visibility</h3>
   </div>
 </div>
 }

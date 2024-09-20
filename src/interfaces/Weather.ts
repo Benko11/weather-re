@@ -4,7 +4,13 @@ export interface Weather {
   condition: string;
   icon: string;
   temperature: number;
+  tempMin: number;
+  tempMax: number;
   feelsLike: number;
   humidity: number;
-  wind: number;
+  wind: {
+    speed: number;
+    direction: number;
+  };
+  visibility: number;
 }

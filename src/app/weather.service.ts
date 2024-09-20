@@ -61,9 +61,15 @@ export class WeatherService {
       city: data.name,
       country: data.sys.country,
       temperature: data.main.temp,
+      tempMin: data.main.temp_min,
+      tempMax: data.main.temp_max,
       feelsLike: data.main.feels_like,
       humidity: data.main.humidity,
-      wind: data.wind.speed,
+      wind: {
+        speed: data.wind.speed,
+        direction: data.wind.deg,
+      },
+      visibility: data.visibility,
       icon: data.weather[0].icon,
     };
   }
