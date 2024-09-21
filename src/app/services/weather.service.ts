@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, output } from '@angular/core';
-import { environment } from '../environments/environment.development';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -11,6 +10,8 @@ import {
 } from 'rxjs';
 import { Weather } from '../interfaces/Weather';
 import { Coordinates } from '../interfaces/Coordinates';
+
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

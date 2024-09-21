@@ -1,14 +1,17 @@
-@if(long != null && lat != null) {
-
+@if (isLoading) {
+<div>Retrieving weather information...</div>
+} @else if(long != null && lat != null) {
 <div class="hero">
   <h1>{{ currentWeather.city }}, {{ currentWeather.country }}</h1>
   <h2>{{ currentWeather.condition }}</h2>
   <div class="temps">
-    <div class="max">
-      H: <strong>{{ currentWeather.tempMax | number : "1.0-0" }}°C</strong>
-    </div>
+    Temperatures ranging from
     <div class="min">
-      L: <strong>{{ currentWeather.tempMin | number : "1.0-0" }}°C</strong>
+      <strong>{{ currentWeather.tempMin | number : "1.0-0" }}°C</strong>
+    </div>
+    to
+    <div class="max">
+      <strong>{{ currentWeather.tempMax | number : "1.0-0" }}°C</strong>
     </div>
   </div>
 </div>

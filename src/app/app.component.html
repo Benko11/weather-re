@@ -1,4 +1,8 @@
-<search-city (coordinates)="assignCoordinates($event)" />
+<div class="container">
+  <main>
+    <search-city (coordinates)="assignCoordinates($event)" />
 
-<current-weather [long]="longitude" [lat]="latitude" />
-<div>93pigeons</div>
+    <current-weather [long]="longitude" [lat]="latitude" [isLoading]="false" />
+    <div>93pigeons</div>
+  </main>
+</div>

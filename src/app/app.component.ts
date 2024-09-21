@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { SearchCityComponent } from './search-city/search-city.component';
-import { Coordinates } from '../interfaces/Coordinates';
+import { Coordinates } from './interfaces/Coordinates';
+import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 
 @Component({
   selector: 'app-root',

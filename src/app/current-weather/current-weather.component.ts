@@ -1,13 +1,13 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { WeatherService } from '../weather.service';
-import { Weather } from '../../interfaces/Weather';
+import { Weather } from '../interfaces/Weather';
 import { Observable, of, Subject, Subscription, takeUntil } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { ArrowComponent } from '../icons/arrow/arrow.component';
-import { WindDegreesPipe } from '../wind-degrees.pipe';
+import { WindDegreesPipe } from '../pipes/wind-degrees.pipe';
 import { HumidityHighComponent } from '../icons/humidity-high.component';
 import { HumidityMidComponent } from '../icons/humidity-mid.component';
 import { HumidityLowComponent } from '../icons/humidity-low.component';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'current-weather',
@@ -26,6 +26,7 @@ import { HumidityLowComponent } from '../icons/humidity-low.component';
 export class CurrentWeatherComponent {
   @Input() lat!: number;
   @Input() long!: number;
+  @Input() isLoading: boolean = true;
 
   currentWeather: Weather = {
     city: '',

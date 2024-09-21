@@ -1,13 +1,20 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WeatherService } from '../weather.service';
-import { Coordinates } from '../../interfaces/Coordinates';
+import { Coordinates } from '../interfaces/Coordinates';
 import { debounceTime, filter, map, Subject } from 'rxjs';
+import { SearchComponent } from '../icons/search.component';
+import { LocationComponent } from '../icons/location.component';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'search-city',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SearchComponent,
+    LocationComponent,
+  ],
   templateUrl: './search-city.component.html',
   styleUrl: './search-city.component.css',
 })
