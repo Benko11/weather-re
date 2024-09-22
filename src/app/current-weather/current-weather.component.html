@@ -35,11 +35,11 @@
   <div class="card">
     <div class="icon">
       @if (currentWeather.humidity <= 30) {
-      <humidity-low-icon [size]="24" colour="#8a8a8a" />
+      <humidity-low-icon [size]="24" colour="#6a6a6a" />
       } @else if (currentWeather.humidity <= 70) {
-      <humidity-mid-icon [size]="24" colour="#8a8a8a" />
+      <humidity-mid-icon [size]="24" colour="#6a6a6a" />
       } @else {
-      <humidity-high-icon [size]="24" colour="#8a8a8a" />
+      <humidity-high-icon [size]="24" colour="#6a6a6a" />
       }
     </div>
     <div class="main">{{ currentWeather.humidity }}%</div>
@@ -50,7 +50,7 @@
       class="icon"
       [style.transform]="'rotate(' + currentWeather.wind.direction + 'deg)'"
     >
-      <arrow-icon [size]="24" colour="#8a8a8a" />
+      <arrow-icon [size]="24" colour="#6a6a6a" />
     </div>
     <div class="main">{{ currentWeather.wind.speed | number : "1.0-0" }}</div>
     km/h

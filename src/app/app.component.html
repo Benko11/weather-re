@@ -1,10 +1,7 @@
 <div class="container">
   <main>
     <header>
-      <search-city
-        style="flex-grow: 1"
-        (coordinates)="assignCoordinates($event)"
-      />
+      <search-city (coordinates)="assignCoordinates($event)" />
       <current-location (coordinates)="assignCoordinates($event)" />
     </header>
 

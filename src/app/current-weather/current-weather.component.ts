@@ -8,6 +8,7 @@ import { HumidityMidIconComponent } from '../icons/humidity-mid-icon.component';
 import { HumidityLowIconComponent } from '../icons/humidity-low-icon.component';
 import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
+import { AppearanceService } from '../services/appearance.service';
 
 @Component({
   selector: 'current-weather',
@@ -44,7 +45,8 @@ export class CurrentWeatherComponent {
 
   constructor(
     private weatherService: WeatherService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private appearanceService: AppearanceService
   ) {}
 
   async ngOnInit() {
@@ -68,6 +70,27 @@ export class CurrentWeatherComponent {
     ).subscribe((load) => {
       this.currentWeather = load;
       this.loadingService.stopLoading();
+      this.applyWeatherTheme();
     });
+  }
+
+  applyWeatherTheme() {
+    const { condition } = this.currentWeather;
+    const { applyCSSColour } = this.appearanceService;
+
+    applyCSSColour(condition, ['clear', '*'], 'clear');
+    applyCSSColour(condition, ['clouds'], 'cloudy');
+    applyCSSColour(condition, ['snow'], 'snowy');
+    applyCSSColour(condition, ['sand'], 'sandy');
+    applyCSSColour(
+      condition,
+      ['rain', 'drizzle', 'fog', 'mist', 'smoke', 'haze', 'dust'],
+      'rainy'
+    );
+    applyCSSColour(
+      condition,
+      ['thunderstorm', 'tornado', 'squall', 'ash'],
+      'thunderstorm'
+    );
   }
 }

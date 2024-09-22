@@ -15,3 +15,7 @@ header {
   gap: 1rem;
   width: 100%;
 }
+
+search-city {
+  flex-grow: 1;
+}

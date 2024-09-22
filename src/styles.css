@@ -54,7 +54,18 @@ h6 {
   src: url(./assets/fonts/Aptos.ttf);
 }
 
+:root {
+  --clear: #73adc7;
+  --cloudy: #9dacbc;
+  --rainy: hsl(100, 3%, 71%);
+  --snowy: hsl(211, 59%, 82%);
+  --drizzly: #babcbb;
+  --thunderstorm: hsl(219, 27%, 32%);
+  --sandy: #d3c8b1;
+  --background: var(--clear);
+}
+
 body {
   font-family: Aptos, sans-serif;
-  background-color: #73adc7;
+  background-color: var(--background);
 }
