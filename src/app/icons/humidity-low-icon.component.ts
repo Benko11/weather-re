@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
   selector: 'humidity-low-icon',
   standalone: true,
 })
-export class HumidityLowComponent {
+export class HumidityLowIconComponent {
   @Input() size!: number;
   @Input() colour!: string;
 }

@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
   selector: 'location-icon',
   standalone: true,
 })
-export class LocationComponent {
+export class LocationIconComponent {
   @Input() size!: number;
   @Input() colour!: string;
 }

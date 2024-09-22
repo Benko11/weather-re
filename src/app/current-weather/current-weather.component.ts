@@ -1,14 +1,13 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Weather } from '../interfaces/Weather';
-import { Observable, of, Subject, Subscription, takeUntil } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
-import { ArrowComponent } from '../icons/arrow/arrow.component';
+import { ArrowIconComponent } from '../icons/arrow-icon.component';
 import { WindDegreesPipe } from '../pipes/wind-degrees.pipe';
-import { HumidityHighComponent } from '../icons/humidity-high.component';
-import { HumidityMidComponent } from '../icons/humidity-mid.component';
-import { HumidityLowComponent } from '../icons/humidity-low.component';
+import { HumidityHighIconComponent } from '../icons/humidity-high-icon.component';
+import { HumidityMidIconComponent } from '../icons/humidity-mid-icon.component';
+import { HumidityLowIconComponent } from '../icons/humidity-low-icon.component';
 import { WeatherService } from '../services/weather.service';
-import { LoadingService } from '../loading.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'current-weather',
@@ -16,10 +15,10 @@ import { LoadingService } from '../loading.service';
   imports: [
     DecimalPipe,
     WindDegreesPipe,
-    ArrowComponent,
-    HumidityHighComponent,
-    HumidityMidComponent,
-    HumidityLowComponent,
+    ArrowIconComponent,
+    HumidityHighIconComponent,
+    HumidityMidIconComponent,
+    HumidityLowIconComponent,
   ],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css',
@@ -53,7 +52,7 @@ export class CurrentWeatherComponent {
       this.isLoading = loading;
     });
 
-    // (await this.weatherService.getCurrentWeather()).subscribe(
+    // (await this.weatherService.getCurrentWeatherForCoords()).subscribe(
     //   (load) => (this.currentWeather = load)
     // );
   }
@@ -62,12 +61,13 @@ export class CurrentWeatherComponent {
     if (this.long == null || this.lat == null) return;
 
     (
-      await this.weatherService.getCurrentWeather({
+      await this.weatherService.getCurrentWeatherForCoords({
         lon: this.long,
         lat: this.lat,
       })
     ).subscribe((load) => {
       this.currentWeather = load;
+      this.loadingService.stopLoading();
     });
   }
 }

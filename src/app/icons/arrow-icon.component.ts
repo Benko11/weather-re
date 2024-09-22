@@ -17,7 +17,7 @@ import { Component, Input } from '@angular/core';
   </svg>`,
   styles: ``,
 })
-export class ArrowComponent {
+export class ArrowIconComponent {
   @Input() colour!: string;
   @Input() size!: number;
 }

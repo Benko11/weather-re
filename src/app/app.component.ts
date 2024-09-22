@@ -3,11 +3,17 @@ import { RouterOutlet } from '@angular/router';
 import { SearchCityComponent } from './search-city/search-city.component';
 import { Coordinates } from './interfaces/Coordinates';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
+import { CurrentLocationComponent } from './current-location/current-location.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CurrentWeatherComponent, SearchCityComponent],
+  imports: [
+    RouterOutlet,
+    CurrentWeatherComponent,
+    CurrentLocationComponent,
+    SearchCityComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,6 +1,12 @@
 <div class="container">
   <main>
-    <search-city (coordinates)="assignCoordinates($event)" />
+    <header>
+      <search-city
+        style="flex-grow: 1"
+        (coordinates)="assignCoordinates($event)"
+      />
+      <current-location (coordinates)="assignCoordinates($event)" />
+    </header>
 
     <current-weather [long]="longitude" [lat]="latitude" [isLoading]="false" />
     <div>93pigeons</div>

@@ -1,12 +1,6 @@
-.container {
-  padding: 20px;
-  display: flex;
-  gap: 1rem;
-}
-
 form {
   display: flex;
-  width: 100%;
+  flex-grow: 1;
 }
 
 input {
@@ -30,31 +24,13 @@ input:focus {
 button {
   border: none;
   cursor: pointer;
-}
-
-form button {
   background-color: #2a2a2f;
   padding: 0.5rem 1rem;
   border-radius: 0 50px 50px 0;
 }
 
-form button:hover,
-form button:focus {
+button:hover,
+button:focus {
   background-color: #1a1a1f;
   outline: 2px solid #3a3a3f;
-}
-
-.current-location {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-
-.current-location:hover,
-.current-location:focus {
-  background-color: #efefef;
 }

@@ -21,7 +21,7 @@ export class WeatherService {
 
   constructor(private http: HttpClient) {}
 
-  private async locateUser(): Promise<Coordinates> {
+  async getUserLocation(): Promise<Coordinates> {
     try {
       const pos: any = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
@@ -35,7 +35,7 @@ export class WeatherService {
     }
   }
 
-  async getCurrentWeather(
+  async getCurrentWeatherForCoords(
     coordinates: Coordinates
   ): Promise<Observable<Weather>> {
     const url = `${environment.apiUrl}?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${this.apiKey}&units=metric`;
@@ -49,9 +49,6 @@ export class WeatherService {
 
     return this.http.get(url).pipe(
       filter((raw) => raw != null && raw != ''),
-      distinctUntilChanged(),
-      debounceTime(500),
-      throttleTime(500),
       map((raw) => this.transformCityNameToCoordinates(raw))
     );
   }

@@ -1,19 +1,14 @@
-<div class="container">
-  <form (ngSubmit)="onSearch()">
-    <input
-      type="text"
-      name=""
-      id=""
-      autofocus
-      [(ngModel)]="query"
-      [ngModelOptions]="{ standalone: true }"
-      placeholder="Search (e.g. London)"
-    />
-    <button type="submit">
-      <search-icon [size]="24" colour="#fff" />
-    </button>
-  </form>
-  <button class="current-location">
-    <location-icon [size]="24" />
+<form (ngSubmit)="onSearch()">
+  <input
+    type="text"
+    name=""
+    id=""
+    autofocus
+    [(ngModel)]="query"
+    [ngModelOptions]="{ standalone: true }"
+    placeholder="Search (e.g. London)"
+  />
+  <button type="submit">
+    <search-icon [size]="24" colour="#fff" />
   </button>
-</div>
+</form>

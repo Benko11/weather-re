@@ -1,9 +1,17 @@
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 main {
   width: 1200px;
   max-width: 95%;
+}
+
+header {
+  padding: 20px;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
 }
