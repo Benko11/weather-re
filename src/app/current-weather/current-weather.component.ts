@@ -8,6 +8,7 @@ import { HumidityHighComponent } from '../icons/humidity-high.component';
 import { HumidityMidComponent } from '../icons/humidity-mid.component';
 import { HumidityLowComponent } from '../icons/humidity-low.component';
 import { WeatherService } from '../services/weather.service';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'current-weather',
@@ -42,9 +43,16 @@ export class CurrentWeatherComponent {
     wind: { direction: 0, speed: 0 },
   };
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService,
+    private loadingService: LoadingService
+  ) {}
 
   async ngOnInit() {
+    this.loadingService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
+    });
+
     // (await this.weatherService.getCurrentWeather()).subscribe(
     //   (load) => (this.currentWeather = load)
     // );
@@ -58,6 +66,8 @@ export class CurrentWeatherComponent {
         lon: this.long,
         lat: this.lat,
       })
-    ).subscribe((load) => (this.currentWeather = load));
+    ).subscribe((load) => {
+      this.currentWeather = load;
+    });
   }
 }

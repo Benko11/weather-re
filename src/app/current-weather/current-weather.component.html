@@ -1,5 +1,5 @@
 @if (isLoading) {
-<div>Retrieving weather information...</div>
+<div class="loading-indicator">Retrieving weather information...</div>
 } @else if(long != null && lat != null) {
 <div class="hero">
   <h1>{{ currentWeather.city }}, {{ currentWeather.country }}</h1>

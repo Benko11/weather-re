@@ -58,6 +58,12 @@
   gap: 0.5rem;
 }
 
+.loading-indicator {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
 .min {
   background-color: hsl(200, 70%, 40%);
 }

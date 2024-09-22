@@ -5,6 +5,7 @@ import { debounceTime, filter, map, Subject } from 'rxjs';
 import { SearchComponent } from '../icons/search.component';
 import { LocationComponent } from '../icons/location.component';
 import { WeatherService } from '../services/weather.service';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'search-city',
@@ -24,7 +25,10 @@ export class SearchCityComponent {
 
   @Output() coordinates = new EventEmitter<Coordinates>();
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit() {
     this.querySubject
@@ -37,6 +41,7 @@ export class SearchCityComponent {
   }
 
   onSearch() {
+    this.loadingService.startLoading();
     this.querySubject.next(this.query);
   }
 
@@ -45,8 +50,9 @@ export class SearchCityComponent {
   }
 
   performSearch(query: string) {
-    this.weatherService
-      .getCoordsForCity(query)
-      .subscribe((data) => this.coordinates.emit(data));
+    this.weatherService.getCoordsForCity(query).subscribe((data) => {
+      this.loadingService.stopLoading();
+      this.coordinates.emit(data);
+    });
   }
 }

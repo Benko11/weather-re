@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchCityComponent } from './search-city/search-city.component';
 import { Coordinates } from './interfaces/Coordinates';
@@ -15,7 +15,20 @@ export class AppComponent {
   latitude!: number;
   longitude!: number;
 
-  constructor() {}
+  constructor() {
+    const count = signal(0);
+    effect(() => console.log(`Count: ${count()}`));
+
+    console.log(`Count: ${count()}`);
+
+    for (let i = 0; i < 10; i++) {
+      count.update((v) => v + 1);
+    }
+
+    const specialCount = computed(() => count() * 2);
+    console.log(specialCount());
+    console.log(specialCount()); // now cached
+  }
 
   ngOnInit() {
     // subscribing to observables is like calling a function, providing callbacks where the data will be delivered to
