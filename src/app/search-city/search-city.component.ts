@@ -98,6 +98,7 @@ export class SearchCityComponent {
         })
       )
       .subscribe((data) => {
+        console.log(data);
         this.coordinates.emit(data);
         this.loadingService.stopLoading();
       });

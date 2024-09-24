@@ -65,9 +65,9 @@ export class CurrentWeatherComponent {
         lat: this.lat,
       })
     ).subscribe((load) => {
-      console.log(load);
       this.currentWeather = load;
       this.applyWeatherTheme();
+      this.loadingService.stopLoading();
     });
   }
 
