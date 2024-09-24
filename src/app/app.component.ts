@@ -4,6 +4,7 @@ import { SearchCityComponent } from './search-city/search-city.component';
 import { Coordinates } from './interfaces/Coordinates';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { CurrentLocationComponent } from './current-location/current-location.component';
+import { ErrorMessageHandlerComponent } from './error-message-handler/error-message-handler.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { CurrentLocationComponent } from './current-location/current-location.co
     CurrentWeatherComponent,
     CurrentLocationComponent,
     SearchCityComponent,
+    ErrorMessageHandlerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

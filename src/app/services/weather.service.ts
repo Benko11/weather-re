@@ -6,12 +6,15 @@ import {
   filter,
   map,
   Observable,
+  of,
+  tap,
   throttleTime,
 } from 'rxjs';
 import { Weather } from '../interfaces/Weather';
 import { Coordinates } from '../interfaces/Coordinates';
 
 import { environment } from '../../environments/environment.development';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +22,10 @@ import { environment } from '../../environments/environment.development';
 export class WeatherService {
   private apiKey = 'b4e4c88aa6940bfbc53c9eb3c3901432';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private errorHandlerService: ErrorHandlerService
+  ) {}
 
   async getUserLocation(): Promise<Coordinates> {
     try {
@@ -37,7 +43,9 @@ export class WeatherService {
 
   async getCurrentWeatherForCoords(
     coordinates: Coordinates
-  ): Promise<Observable<Weather>> {
+  ): Promise<Observable<any>> {
+    if (coordinates.lon == null || coordinates.lat == null) return of([]);
+
     const url = `${environment.apiUrl}?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${this.apiKey}&units=metric`;
     return this.http
       .get(url)
@@ -45,10 +53,20 @@ export class WeatherService {
   }
 
   getCoordsForCity(city: string): Observable<Coordinates> {
+    console.log(city);
     const url = `${environment.apiUrlLocation}?q=${city}&limit=1&appid=${this.apiKey}`;
 
     return this.http.get(url).pipe(
-      filter((raw) => raw != null && raw != ''),
+      map((response) => {
+        if (Array.isArray(response) && response.length < 1) {
+          this.errorHandlerService.setMessage('Could not find the city name');
+          console.error('Could not find the city name');
+
+          throw new Error('Could not find the city name');
+        }
+
+        return response;
+      }),
       map((raw) => this.transformCityNameToCoordinates(raw))
     );
   }
@@ -82,6 +100,7 @@ export class WeatherService {
   }
 
   private transformCityNameToCoordinates(data: any): Coordinates {
+    console.log(data);
     return {
       lat: data[0].lat,
       lon: data[0].lon,

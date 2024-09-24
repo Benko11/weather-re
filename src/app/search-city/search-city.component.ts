@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Coordinates } from '../interfaces/Coordinates';
-import { debounceTime, filter, map, Subject } from 'rxjs';
+import { catchError, debounceTime, filter, map, Subject } from 'rxjs';
 import { SearchIconComponent } from '../icons/search-icon.component';
 import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Component({
   selector: 'search-city',
@@ -41,7 +42,8 @@ export class SearchCityComponent {
 
   constructor(
     private weatherService: WeatherService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private errorHandlerService: ErrorHandlerService
   ) {}
 
   ngOnInit() {
@@ -87,9 +89,18 @@ export class SearchCityComponent {
   }
 
   performSearch(query: string) {
-    this.weatherService.getCoordsForCity(query).subscribe((data) => {
-      this.coordinates.emit(data);
-    });
+    this.weatherService
+      .getCoordsForCity(query)
+      .pipe(
+        catchError((err) => {
+          this.loadingService.stopLoading();
+          return [];
+        })
+      )
+      .subscribe((data) => {
+        console.log(data);
+        this.coordinates.emit(data);
+      });
   }
 
   getRandomExampleCity() {
