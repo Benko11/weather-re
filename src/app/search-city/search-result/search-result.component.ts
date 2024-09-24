@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocationIconComponent } from '../../icons/location-icon.component';
 import { DecimalPipe } from '@angular/common';
 import { Coordinates } from '../../interfaces/Coordinates';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'search-result',
@@ -19,7 +20,10 @@ export class SearchResultComponent {
 
   @Output() coordinates = new EventEmitter<Coordinates>();
 
+  constructor(private loadingService: LoadingService) {}
+
   onSelect() {
+    this.loadingService.startLoading();
     this.coordinates.emit({ lon: this.longitude, lat: this.latitude });
   }
 }
