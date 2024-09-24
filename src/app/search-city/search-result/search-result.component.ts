@@ -3,11 +3,18 @@ import { LocationIconComponent } from '../../icons/location-icon.component';
 import { DecimalPipe } from '@angular/common';
 import { Coordinates } from '../../interfaces/Coordinates';
 import { LoadingService } from '../../services/loading.service';
+import { LatitudeConvertPipe } from '../../pipes/latitude-convert.pipe';
+import { LongitudeConvertPipe } from '../../pipes/longitude-convert.pipe';
 
 @Component({
   selector: 'search-result',
   standalone: true,
-  imports: [LocationIconComponent, DecimalPipe],
+  imports: [
+    LocationIconComponent,
+    DecimalPipe,
+    LatitudeConvertPipe,
+    LongitudeConvertPipe,
+  ],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.css',
 })

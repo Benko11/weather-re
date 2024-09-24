@@ -9,6 +9,7 @@ import { HumidityLowIconComponent } from '../icons/humidity-low-icon.component';
 import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
 import { AppearanceService } from '../services/appearance.service';
+import { LatitudeConvertPipe } from '../pipes/latitude-convert.pipe';
 
 @Component({
   selector: 'current-weather',
