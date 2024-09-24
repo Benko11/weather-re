@@ -44,13 +44,21 @@ export class WeatherService {
       .pipe(map((raw) => this.transformWeatherData(raw)));
   }
 
-  getCoordsForCity(city: string) {
-    const url = `${environment.apiUrlLocation}?q=${city}&limit=3&appid=${this.apiKey}`;
+  getCoordsForCity(city: string): Observable<Coordinates> {
+    const url = `${environment.apiUrlLocation}?q=${city}&limit=1&appid=${this.apiKey}`;
 
     return this.http.get(url).pipe(
       filter((raw) => raw != null && raw != ''),
       map((raw) => this.transformCityNameToCoordinates(raw))
     );
+  }
+
+  getQueryMatchesForCity(query: string): Observable<any> {
+    const url = `${environment.apiUrlLocation}?q=${query}&limit=5&appid=${this.apiKey}`;
+
+    return this.http
+      .get(url)
+      .pipe(map((raw) => this.transformCityNames(raw as any[])));
   }
 
   private transformWeatherData(data: any): Weather {
@@ -63,6 +71,7 @@ export class WeatherService {
       tempMax: data.main.temp_max,
       feelsLike: data.main.feels_like,
       humidity: data.main.humidity,
+      state: data.main.state,
       wind: {
         speed: data.wind.speed,
         direction: data.wind.deg,
@@ -77,5 +86,19 @@ export class WeatherService {
       lat: data[0].lat,
       lon: data[0].lon,
     };
+  }
+
+  private transformCityNames(data: any[]) {
+    const results: any[] = [];
+    data.forEach((item) => {
+      results.push({
+        name: item.name,
+        country: item.country,
+        state: item.state,
+        lat: item.lat,
+        lon: item.lon,
+      });
+    });
+    return results;
   }
 }

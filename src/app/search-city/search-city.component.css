@@ -1,3 +1,9 @@
+.container {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
 form {
   display: flex;
   flex-grow: 1;
@@ -24,7 +30,7 @@ input:focus {
 button {
   border: none;
   cursor: pointer;
-  background-color: #2a2a2f;
+  background-color: var(--foreground-dark);
   padding: 0.5rem 1rem;
   border-radius: 0 50px 50px 0;
 }
@@ -33,4 +39,13 @@ button:hover,
 button:focus {
   background-color: #1a1a1f;
   outline: 2px solid #3a3a3f;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  padding-top: 0;
+  border-radius: 20px;
 }

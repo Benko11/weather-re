@@ -20,21 +20,9 @@ import { CurrentLocationComponent } from './current-location/current-location.co
 export class AppComponent {
   latitude!: number;
   longitude!: number;
+  hideSearchResults = true;
 
-  constructor() {
-    const count = signal(0);
-    effect(() => console.log(`Count: ${count()}`));
-
-    console.log(`Count: ${count()}`);
-
-    for (let i = 0; i < 10; i++) {
-      count.update((v) => v + 1);
-    }
-
-    const specialCount = computed(() => count() * 2);
-    console.log(specialCount());
-    console.log(specialCount()); // now cached
-  }
+  constructor() {}
 
   ngOnInit() {
     // subscribing to observables is like calling a function, providing callbacks where the data will be delivered to

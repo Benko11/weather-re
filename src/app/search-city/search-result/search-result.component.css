@@ -1,0 +1,36 @@
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: var(--foreground-dark);
+  background-color: var(--foreground);
+  gap: 1rem;
+  font-size: 1.25rem;
+}
+
+button:focus,
+button:hover {
+  color: var(--foreground);
+  background-color: var(--foreground-dark);
+}
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0; */
+  padding: 0.5rem 1rem;
+  background-color: var(--foreground);
+  color: var(--foreground-dark);
+  cursor: pointer;
+}
+
+small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: -1rem;
+  font-size: 60%;
+}

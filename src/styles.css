@@ -63,9 +63,28 @@ h6 {
   --thunderstorm: hsl(219, 27%, 32%);
   --sandy: #d3c8b1;
   --background: var(--clear);
+  --foreground: #efefef;
+  --foreground-dark: #2a2a2f;
+}
+
+::selection {
+  background-color: var(--foreground-dark);
+  color: var(--foreground);
 }
 
 body {
   font-family: Aptos, sans-serif;
   background-color: var(--background);
+}
+
+.search-result:hover svg {
+  fill: var(--foreground);
+}
+
+.search-results search-result:first-child {
+  border-radius: 20px 20px 0 0;
+}
+
+.search-results search-result:last-child {
+  border-radius: 0 0 20px 20px;
 }

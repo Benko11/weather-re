@@ -2,7 +2,10 @@
 <div class="loading-indicator">Retrieving weather information...</div>
 } @else if(long != null && lat != null) {
 <div class="hero">
-  <h1>{{ currentWeather.city }}, {{ currentWeather.country }}</h1>
+  <h1>
+    {{ currentWeather.city }}, {{ currentWeather.country }} @if
+    (currentWeather.state != null) { ({{ currentWeather.state }}) }
+  </h1>
   <h2>{{ currentWeather.condition }}</h2>
   <div class="temps">
     Temperatures ranging from

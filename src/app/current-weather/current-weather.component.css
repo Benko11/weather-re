@@ -83,7 +83,7 @@ h3 {
 .min,
 .max {
   display: bold;
-  color: #fff;
+  color: var(--foreground);
   border-radius: 5px;
   padding: 0.25rem 0.5rem;
   text-shadow: none;

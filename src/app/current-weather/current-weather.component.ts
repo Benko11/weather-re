@@ -27,7 +27,8 @@ import { AppearanceService } from '../services/appearance.service';
 export class CurrentWeatherComponent {
   @Input() lat!: number;
   @Input() long!: number;
-  @Input() isLoading: boolean = true;
+
+  isLoading!: boolean;
 
   currentWeather: Weather = {
     city: '',

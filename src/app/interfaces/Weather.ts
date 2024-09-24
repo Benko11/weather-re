@@ -1,6 +1,7 @@
 export interface Weather {
   city: string;
   country: string;
+  state?: string;
   condition: string;
   icon: string;
   temperature: number;

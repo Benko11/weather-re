@@ -1,14 +1,33 @@
-<form (ngSubmit)="onSearch()">
-  <input
-    type="text"
-    name=""
-    id=""
-    autofocus
-    [(ngModel)]="query"
-    [ngModelOptions]="{ standalone: true }"
-    placeholder="Search (e.g. London)"
-  />
-  <button type="submit">
-    <search-icon [size]="24" colour="#fff" />
-  </button>
-</form>
+<div class="container">
+  <form (ngSubmit)="onSearch()">
+    <input
+      type="text"
+      name=""
+      id=""
+      autofocus
+      [(ngModel)]="query"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Search (e.g. {{ activeExampleCity }})"
+      (input)="onQueryInput($event)"
+      (blur)="onQueryBlur()"
+    />
+    <button type="submit">
+      <search-icon [size]="24" colour="#fff" />
+    </button>
+  </form>
+
+  @if (queryResults.length > 0) {
+  <div class="search-results">
+    @for (result of queryResults; track $index) {
+    <search-result
+      [name]="result.name"
+      [country]="result.country"
+      [latitude]="result.lat"
+      [longitude]="result.lon"
+      [state]="result.state"
+      (coordinates)="assignCoordinates($event)"
+    />
+    }
+  </div>
+  }
+</div>

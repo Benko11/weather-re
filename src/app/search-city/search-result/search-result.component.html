@@ -1,0 +1,11 @@
+<button class="search-result" (click)="onSelect()">
+  <div>
+    {{ name }}, {{ country }} @if (state != null && state.trim() !== '') { ({{
+      state
+    }}) }
+  </div>
+  <small>
+    <location-icon [size]="12" /> {{ longitude | number : "1.0-2" }},
+    {{ latitude | number : "1.0-2" }}
+  </small>
+</button>
