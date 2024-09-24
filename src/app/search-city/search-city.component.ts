@@ -83,6 +83,12 @@ export class SearchCityComponent {
 
   performTentativeSearch(query: string) {
     this.weatherService.getQueryMatchesForCity(query).subscribe((data) => {
+      if (data.length < 1) {
+        this.errorHandlerService.setMessage(
+          'Could not find the city name',
+          2000
+        );
+      }
       this.queryResults = [];
       this.queryResults = data;
     });
@@ -98,7 +104,6 @@ export class SearchCityComponent {
         })
       )
       .subscribe((data) => {
-        console.log(data);
         this.coordinates.emit(data);
         this.loadingService.stopLoading();
       });
