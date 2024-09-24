@@ -7,6 +7,7 @@ import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { ErrorHandlerService } from '../services/error-handler.service';
+import { SearchResultService } from '../services/search-result.service';
 
 @Component({
   selector: 'search-city',
@@ -43,11 +44,16 @@ export class SearchCityComponent {
   constructor(
     private weatherService: WeatherService,
     private loadingService: LoadingService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private searchResultService: SearchResultService
   ) {}
 
   ngOnInit() {
     this.activeExampleCity = this.getRandomExampleCity();
+
+    this.searchResultService.searchQuery$.subscribe((searchQueries) => {
+      this.queryResults = searchQueries;
+    });
 
     this.querySubject
       .pipe(
@@ -89,8 +95,9 @@ export class SearchCityComponent {
           2000
         );
       }
-      this.queryResults = [];
-      this.queryResults = data;
+
+      this.searchResultService.reset();
+      this.searchResultService.setSearchQueries(data);
     });
   }
 
@@ -126,6 +133,6 @@ export class SearchCityComponent {
   }
 
   resetQueryResults() {
-    this.queryResults = [];
+    this.searchResultService.reset();
   }
 }

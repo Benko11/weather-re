@@ -9,6 +9,7 @@ import { HumidityLowIconComponent } from '../icons/humidity-low-icon.component';
 import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
 import { AppearanceService } from '../services/appearance.service';
+import { SearchResultService } from '../services/search-result.service';
 
 @Component({
   selector: 'current-weather',
@@ -47,7 +48,8 @@ export class CurrentWeatherComponent {
   constructor(
     private weatherService: WeatherService,
     private loadingService: LoadingService,
-    private appearanceService: AppearanceService
+    private appearanceService: AppearanceService,
+    private searchResultService: SearchResultService
   ) {}
 
   async ngOnInit() {
@@ -68,6 +70,7 @@ export class CurrentWeatherComponent {
       this.currentWeather = load;
       this.applyWeatherTheme();
       this.loadingService.stopLoading();
+      this.searchResultService.reset();
     });
   }
 
