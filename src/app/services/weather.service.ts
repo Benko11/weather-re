@@ -53,8 +53,7 @@ export class WeatherService {
   }
 
   getCoordsForCity(city: string): Observable<Coordinates> {
-    console.log(city);
-    const url = `${environment.apiUrlLocation}?q=${city}&limit=1&appid=${this.apiKey}`;
+    const url = `${environment.apiUrlLocation}?q=${city}&appid=${this.apiKey}`;
 
     return this.http.get(url).pipe(
       map((response) => {
@@ -100,7 +99,6 @@ export class WeatherService {
   }
 
   private transformCityNameToCoordinates(data: any): Coordinates {
-    console.log(data);
     return {
       lat: data[0].lat,
       lon: data[0].lon,

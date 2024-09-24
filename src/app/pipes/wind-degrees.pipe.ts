@@ -88,7 +88,6 @@ export class WindDegreesPipe implements PipeTransform {
 
   isInInterval(n: number, a: number, b: number) {
     if (a < b) {
-      console.log(`Interval: [${a}, ${b}]`);
       if (a <= n && n <= b) return true;
       return false;
     }

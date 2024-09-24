@@ -14,4 +14,5 @@ export interface Weather {
     direction: number;
   };
   visibility: number;
+  time?: number;
 }

@@ -9,7 +9,6 @@ import { HumidityLowIconComponent } from '../icons/humidity-low-icon.component';
 import { WeatherService } from '../services/weather.service';
 import { LoadingService } from '../services/loading.service';
 import { AppearanceService } from '../services/appearance.service';
-import { LatitudeConvertPipe } from '../pipes/latitude-convert.pipe';
 
 @Component({
   selector: 'current-weather',
@@ -55,10 +54,6 @@ export class CurrentWeatherComponent {
     this.loadingService.loading$.subscribe((loading) => {
       this.isLoading = loading;
     });
-
-    // (await this.weatherService.getCurrentWeatherForCoords()).subscribe(
-    //   (load) => (this.currentWeather = load)
-    // );
   }
 
   async ngOnChanges(changes: SimpleChanges) {
@@ -70,8 +65,8 @@ export class CurrentWeatherComponent {
         lat: this.lat,
       })
     ).subscribe((load) => {
+      console.log(load);
       this.currentWeather = load;
-      this.loadingService.stopLoading();
       this.applyWeatherTheme();
     });
   }
