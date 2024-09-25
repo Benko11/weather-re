@@ -30,5 +30,7 @@ export class CurrentLocationComponent {
       this.errorHandlerService.setMessage(
         'Location access rejected, defaulting to zero coordinates'
       );
+
+    this.loadingService.stopLoading();
   }
 }
