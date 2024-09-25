@@ -3,8 +3,10 @@
 } @else if(long != null && lat != null) {
 <div class="hero">
   <h1>
-    {{ currentWeather.city }}, {{ currentWeather.country }} @if
-    (currentWeather.state != null) { ({{ currentWeather.state }}) }
+    {{ currentWeather.city }}
+    @if (currentWeather.country) {
+    <span>, {{ currentWeather.country }}</span>
+    } @if (currentWeather.state != null) { ({{ currentWeather.state }}) }
   </h1>
   <h2>{{ currentWeather.condition }}</h2>
   <div class="temps">

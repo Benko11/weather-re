@@ -1,15 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, output } from '@angular/core';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  Observable,
-  of,
-  tap,
-  throttleTime,
-} from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Weather } from '../interfaces/Weather';
 import { Coordinates } from '../interfaces/Coordinates';
 
@@ -37,7 +28,7 @@ export class WeatherService {
 
       return { lat: pos.coords.latitude, lon: pos.coords.longitude };
     } catch {
-      return { lat: 0.0, lon: 0.0 };
+      return { lat: 0.0, lon: 0.0, error: true };
     }
   }
 
